@@ -23,7 +23,6 @@ public class Main {
 
       if (!in.hasNextInt()) {
         System.out.println("Неккоректный ввод! Повторите попытку");
-        continue;
       } else {
         menu = in.nextInt();
         if (menu > 10 || menu < 0) {
@@ -96,7 +95,7 @@ public class Main {
             System.out.println("Неккоректный ввод! Повторите попытку");
           } else {
             int minutes = input.nextInt();
-            System.out.println(minutes + " минут(-а) = " + convert(minutes));
+            System.out.println(minutes + " минут = " + convert(minutes) + " секунд");
             break;
           }
         }
@@ -110,14 +109,18 @@ public class Main {
           } else {
             int twoPoints = input.nextInt();
 
-            System.out.println("Введите количество 3ёх очков: ");
-            if (!input.hasNextInt()) {
-              System.out.println("Неккоректный ввод! Повторите попытку");
-            } else {
-              int threePoints = input.nextInt();
-              System.out.println("Окончательные очки команды = " + point(twoPoints, threePoints));
-              break;
+            while (true) {
+              Scanner secondInput = new Scanner(System.in);
+              System.out.println("Введите количество 3ёх очков: ");
+              if (!secondInput.hasNextInt()) {
+                System.out.println("Неккоректный ввод! Повторите попытку");
+              } else {
+                int threePoints = secondInput.nextInt();
+                System.out.println("Окончательные очки команды = " + point(twoPoints, threePoints));
+                break;
+              }
             }
+            break;
           }
         }
         break;
@@ -130,22 +133,30 @@ public class Main {
           } else {
             int win = input.nextInt();
 
-            System.out.println("Введите количество ничьих: ");
-            if (!input.hasNextInt()) {
-              System.out.println("Неккоректный ввод! Повторите попытку");
-            } else {
-              int tie = input.nextInt();
-
-              System.out.println("Введите количество поражений: ");
-              if (!input.hasNextInt()) {
+            while (true) {
+              Scanner secondInput = new Scanner(System.in);
+              System.out.println("Введите количество ничьих: ");
+              if (!secondInput.hasNextInt()) {
                 System.out.println("Неккоректный ввод! Повторите попытку");
               } else {
-                int lose = input.nextInt();
-                System.out.println(
-                    "Количество очков футбольной команды = " + footballPoint(win, tie, lose));
+                int tie = secondInput.nextInt();
+
+                while (true) {
+                  Scanner thirdInput = new Scanner(System.in);
+                  System.out.println("Введите количество поражений: ");
+                  if (!thirdInput.hasNextInt()) {
+                    System.out.println("Неккоректный ввод! Повторите попытку");
+                  } else {
+                    int lose = thirdInput.nextInt();
+                    System.out.println(
+                        "Количество очков футбольной команды = " + footballPoint(win, tie, lose));
+                    break;
+                  }
+                }
                 break;
               }
             }
+            break;
           }
         }
         break;
@@ -172,15 +183,19 @@ public class Main {
           } else {
             boolean firstBooleanVar = input.nextBoolean();
 
-            System.out.println("Введите второе логическое значение: ");
-            if (!input.hasNextBoolean()) {
-              System.out.println("Неккоректный ввод! Повторите попытку");
-            } else {
-              boolean secondBooleanVar = input.nextBoolean();
-              System.out
-                  .println("Возвращаемое значение = " + and(firstBooleanVar, secondBooleanVar));
-              break;
+            while (true) {
+              Scanner secondInput = new Scanner(System.in);
+              System.out.println("Введите второе логическое значение: ");
+              if (!secondInput.hasNextBoolean()) {
+                System.out.println("Неккоректный ввод! Повторите попытку");
+              } else {
+                boolean secondBooleanVar = secondInput.nextBoolean();
+                System.out
+                    .println("Возвращаемое значение = " + and(firstBooleanVar, secondBooleanVar));
+                break;
+              }
             }
+            break;
           }
         }
         break;
@@ -193,23 +208,32 @@ public class Main {
           } else {
             int enoughPaint = input.nextInt();
 
-            System.out.println("Введите ширину: ");
-            if (!input.hasNextInt()) {
-              System.out.println("Неккоректный ввод! Повторите попытку");
-            } else {
-              int width = input.nextInt();
-
-              System.out.println("Введите высоту: ");
-              if (!input.hasNextInt()) {
+            while (true) {
+              Scanner secondInput = new Scanner(System.in);
+              System.out.println("Введите ширину: ");
+              if (!secondInput.hasNextInt()) {
                 System.out.println("Неккоректный ввод! Повторите попытку");
               } else {
-                int height = input.nextInt();
-                System.out.println(
-                    "Количество стен, которое вы можете покрасить = " + howManyWalls(enoughPaint,
-                        width, height));
+                int width = secondInput.nextInt();
+
+                while (true) {
+                  Scanner thirdInput = new Scanner(System.in);
+                  System.out.println("Введите высоту: ");
+                  if (!thirdInput.hasNextInt()) {
+                    System.out.println("Неккоректный ввод! Повторите попытку");
+                  } else {
+                    int height = thirdInput.nextInt();
+                    System.out.println(
+                        "Количество стен, которое вы можете покрасить = " + howManyWalls(
+                            enoughPaint,
+                            width, height));
+                    break;
+                  }
+                }
                 break;
               }
             }
+            break;
           }
         }
         break;
@@ -234,23 +258,35 @@ public class Main {
             System.out.println("Неккоректный ввод! Повторите попытку");
           } else {
             double prob = input.nextDouble();
-
-            System.out.println("Введите сумму выигрыша: ");
-            if (!input.hasNextInt()) {
+            if (prob > 1) {
               System.out.println("Неккоректный ввод! Повторите попытку");
-            } else {
-              int prize = input.nextInt();
+              continue;
+            }
 
-              System.out.println("Введите стоимость: ");
-              if (!input.hasNextInt()) {
+            while (true) {
+              Scanner secondInput = new Scanner(System.in);
+              System.out.println("Введите сумму выигрыша: ");
+              if (!secondInput.hasNextInt()) {
                 System.out.println("Неккоректный ввод! Повторите попытку");
               } else {
-                int pay = input.nextInt();
-                System.out
-                    .println("Стоит ли рисковать?" + "\n" + profitableGamble(prob, prize, pay));
+                int prize = secondInput.nextInt();
+
+                while (true) {
+                  Scanner thirdInput = new Scanner(System.in);
+                  System.out.println("Введите стоимость: ");
+                  if (!thirdInput.hasNextInt()) {
+                    System.out.println("Неккоректный ввод! Повторите попытку");
+                  } else {
+                    int pay = thirdInput.nextInt();
+                    System.out
+                        .println("Стоит ли рисковать?" + "\n" + profitableGamble(prob, prize, pay));
+                    break;
+                  }
+                }
                 break;
               }
             }
+            break;
           }
         }
         break;
@@ -263,14 +299,18 @@ public class Main {
           } else {
             int minutes = input.nextInt();
 
-            System.out.println("Введите FPS: ");
-            if (!input.hasNextInt()) {
-              System.out.println("Неккоректный ввод! Повторите попытку");
-            } else {
-              int fps = input.nextInt();
-              System.out.println("Количество кадров = " + frames(minutes, fps));
-              break;
+            while (true) {
+              Scanner secondInput = new Scanner(System.in);
+              System.out.println("Введите FPS: ");
+              if (!secondInput.hasNextInt()) {
+                System.out.println("Неккоректный ввод! Повторите попытку");
+              } else {
+                int fps = secondInput.nextInt();
+                System.out.println("Количество кадров = " + frames(minutes, fps));
+                break;
+              }
             }
+            break;
           }
         }
         break;
@@ -283,14 +323,18 @@ public class Main {
           } else {
             int firstNumber = input.nextInt();
 
-            System.out.println("Введите второче число: ");
-            if (!input.hasNextInt()) {
-              System.out.println("Неккоректный ввод! Повторите попытку");
-            } else {
-              int secondNumber = input.nextInt();
-              System.out.println("Остаток от деления = " + mod(firstNumber, secondNumber));
-              break;
+            while (true) {
+              Scanner secondInput = new Scanner(System.in);
+              System.out.println("Введите второче число: ");
+              if (!secondInput.hasNextInt()) {
+                System.out.println("Неккоректный ввод! Повторите попытку");
+              } else {
+                int secondNumber = secondInput.nextInt();
+                System.out.println("Остаток от деления = " + mod(firstNumber, secondNumber));
+                break;
+              }
             }
+            break;
           }
         }
         break;
