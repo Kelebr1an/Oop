@@ -19,16 +19,16 @@ ___Выполнение блоков___
 
 |Номер задач|Блок 1|Блок 2|Блок 3|Блок 4|Блок 5|Блок 6|
 |:-----------:|:------:|:------:|:------:|:------:|:------:|:------:|
-|   1       |:white_check_mark:|:white_check_mark:||||
-|   2       |:white_check_mark:|:white_check_mark:||||
-|   3       |:white_check_mark:|:white_check_mark:||||
-|   4       |:white_check_mark:|:white_check_mark:||||
-|   5       |:white_check_mark:|:white_check_mark:||||
-|   6       |:white_check_mark:|:white_check_mark:||||
-|   7       |:white_check_mark:|:white_check_mark:||||
-|   8       |:white_check_mark:|:white_check_mark:||||
-|   9       |:white_check_mark:|:white_check_mark:||||
-|   10      |:white_check_mark:|:white_check_mark:||||
+|   1       |:white_check_mark:|:white_check_mark:|:white_check_mark:|||
+|   2       |:white_check_mark:|:white_check_mark:|:white_check_mark:|||
+|   3       |:white_check_mark:|:white_check_mark:|:white_check_mark:|||
+|   4       |:white_check_mark:|:white_check_mark:|:white_check_mark:|||
+|   5       |:white_check_mark:|:white_check_mark:|:white_check_mark:|||
+|   6       |:white_check_mark:|:white_check_mark:|:white_check_mark:|||
+|   7       |:white_check_mark:|:white_check_mark:|:white_check_mark:|||
+|   8       |:white_check_mark:|:white_check_mark:|:white_check_mark:|||
+|   9       |:white_check_mark:|:white_check_mark:|:white_check_mark:|||
+|   10      |:white_check_mark:|:white_check_mark:|:white_check_mark:|||
 
 ___Блок 1___
 -
@@ -61,17 +61,13 @@ __Задача 4__
 __Задача 5__
 ```java
   public static boolean and(boolean firstBooleanVar, boolean secondBooleanVar) {
-    if (firstBooleanVar == true && secondBooleanVar == true) {
-      return true;
-    } else {
-      return false;
-    }
+    return firstBooleanVar && secondBooleanVar;
   }
 ```
 __Задача 6__
 ```java
   public static int howManyWalls(int enoughPaint, int width, int height) {
-    return (int) enoughPaint / (width * height);
+    return enoughPaint / (width * height);
   }
 ```
 __Задача 7__
@@ -83,11 +79,7 @@ __Задача 7__
 __Задача 8__
 ```java
   public static boolean profitableGamble(double prob, int prize, int pay) {
-    if (prob * prize > pay) {
-      return true;
-    } else {
-      return false;
-    }
+    return prob * prize > pay;
   }
 ```
 __Задача 9__
@@ -201,11 +193,10 @@ __Задача 19__
   public static String bomb(String string) {
     string = string.toLowerCase(Locale.ROOT);
     if (string.contains("бомба")) {
-      System.out.println("ПРИГНИСЬ!");
+      return "ПРИГНИСЬ!";
     } else {
-      System.out.println("Расслабься, бомбы нет.");
+      return "Расслабься, бомбы нет.";
     }
-    return null;
   }
 ```
 __Задача 20__
@@ -227,15 +218,135 @@ ___Блок 3___
 -
 
 __Задача 21__  
+```java
+  public static String[][] millionsRounding(String[][] data) {
+    int population;
+    int checker;
+    int millions;
+    for (int i = 0; i < data.length; i++) {
+      population = Integer.parseInt(data[i][1]);
+      millions = population / 1000000;
+      checker = population / 100000;
+      if (checker % 10 <= 4) {
+        data[i][1] = Integer.toString(millions * 1000000);
+      } else {
+        data[i][1] = Integer.toString((millions + 1) * 1000000);
+      }
+    }
+    return data;
+  }
+```
 __Задача 22__  
+```java
+  public static double[] otherSides(int side) {
+    double hypotenuse = side * 2;
+    double otherSide = Math.sqrt(Math.pow(hypotenuse, 2) - Math.pow(side, 2));
+    double[] array = new double[2];
+    array[0] = hypotenuse;
+    array[1] = BigDecimal.valueOf(otherSide).setScale(2, BigDecimal.ROUND_HALF_UP)
+        .doubleValue();
+    return array;
+  }
+```
 __Задача 23__  
+```java
+  public static String rps(String player1, String player2) {
+    if (player1.equals(player2)) {
+      return "Tie";
+    } else if ((player1.equals("rock") && player2.equals("scissors")) ||
+        (player1.equals("paper") && player2.equals("rock")) ||
+        (player1.equals("scissors") && player2.equals("paper"))) {
+      return "Player 1 win";
+    } else {
+      return "Player 2 win";
+    }
+  }
+```
 __Задача 24__  
+```java
+  public static int warOfNumbers(int[] array) {
+    int evenNumbers = 0;
+    int oddNumbers = 0;
+    for (int i = 0; i < array.length; i++) {
+      if (array[i] % 2 == 0) {
+        evenNumbers += array[i];
+      } else if (array[i] % 2 == 1) {
+        oddNumbers += array[i];
+      }
+    }
+    return Math.abs(evenNumbers - oddNumbers);
+  }
+```
 __Задача 25__  
+```java
+  public static String reverseCase(String string) {
+    String replacementString = "";
+    char[] s = string.toCharArray();
+    for (int i = 0; i < s.length; i++) {
+      replacementString +=
+          Character.isLowerCase(s[i]) ? Character.toUpperCase(s[i])
+              : Character.toLowerCase(s[i]);
+    }
+    return replacementString;
+  }
+```
 __Задача 26__  
+```java
+  public static String inatorInator(String string) {
+    String chars = "уеыаоэяиюУЕЫАОЭЯИЮ";
+    Character lastChar = string.charAt(string.length() - 1);
+    if (chars.contains(lastChar.toString())) {
+      string = string + "-inator " + string.length();
+      return string;
+    } else {
+      string = string + "inator " + string.length();
+      return string;
+    }
+  }
+```
 __Задача 27__  
+```java
+  public static boolean doesBrickFit(int a, int b, int c, int w, int h) {
+    return ((a <= w && b <= h) || (a <= w && c <= h) || (b <= w && a <= h) || (b <= w && c <= h)
+        || (c <= w && a <= h) || (c <= w && b <= h));
+  }
+```
 __Задача 28__  
+```java
+  public static BigDecimal totalDistance(double liters, double baseConsumption, int passengers,
+      boolean conditioner) {
+    double consumptionWithPassengers = baseConsumption + baseConsumption * passengers * 0.05;
+    double consumptionWithConditioner = consumptionWithPassengers + consumptionWithPassengers * 0.1;
+    if (conditioner) {
+      return BigDecimal.valueOf(liters / consumptionWithConditioner * 100)
+          .setScale(2, BigDecimal.ROUND_HALF_UP);
+    } else {
+      return BigDecimal.valueOf(liters / consumptionWithPassengers * 100)
+          .setScale(2, BigDecimal.ROUND_HALF_UP);
+    }
+  }
+```
 __Задача 29__  
+```java
+  public static BigDecimal mean(int[] array) {
+    int sum = 0;
+    for (int i = 0; i < array.length; i++) {
+      sum += array[i];
+    }
+    return BigDecimal.valueOf(sum / array.length).setScale(2, BigDecimal.ROUND_HALF_UP);
+  }
+```
 __Задача 30__  
+```java
+  public static boolean parityAnalysis(int number) {
+    String string = Integer.toString(number);
+    int sum = 0;
+    for (int i = 0; i < string.length(); i++) {
+      sum += Integer.parseInt(Character.toString(string.charAt(i)));
+    }
+    return (sum % 2 == 0 && number % 2 == 0) || (sum % 2 == 1 && number % 2 == 1);
+  }
+```
 
 ___Блок 4___
 -
