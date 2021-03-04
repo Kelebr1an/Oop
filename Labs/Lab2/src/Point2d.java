@@ -1,9 +1,8 @@
 public class Point2d {
-
   // координата X
-  private double xCoord;
+  protected double xCoord;
   // координата Y
-  private double yCoord;
+  protected double yCoord;
 
   // Конструктор инициализации
   public Point2d(double x, double y) {
@@ -13,7 +12,7 @@ public class Point2d {
 
   // Конструктор по умолчанию
   public Point2d() {
-  //Вызовите конструктор с двумя параметрами и определите источник.
+    //Вызовите конструктор с двумя параметрами и определите источник.
     this(0, 0);
   }
 

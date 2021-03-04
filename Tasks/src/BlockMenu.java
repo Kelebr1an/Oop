@@ -17,11 +17,11 @@ public class BlockMenu {
         Scanner in = new Scanner(System.in);
         input = in.nextInt();
       } catch (Exception exception) {
-        System.out.println("Ошибка: " + exception + ". Повторите ввод\n");
+        System.out.println("Ошибка: " + exception + ". Повторите ввод");
         continue;
       }
       if (input > 6 || input < 0) {
-        System.out.println("Ошибка: Недопустимое число. Повторите ввод\n");
+        System.out.println("Ошибка: Недопустимое число. Повторите ввод");
         continue;
       }
 

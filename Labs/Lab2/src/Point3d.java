@@ -1,11 +1,6 @@
 import java.math.BigDecimal;
 
-public class Point3d {
-
-  // Координата X
-  private double xCoord;
-  // Координата Y
-  private double yCoord;
+public class Point3d extends Point2d{
   // Координата Z
   private double zCoord;
 
@@ -22,29 +17,9 @@ public class Point3d {
     this(0, 0, 0);
   }
 
-  // Возвращение координаты X
-  public double getX() {
-    return xCoord;
-  }
-
-  // Возвращение координаты Y
-  public double getY() {
-    return yCoord;
-  }
-
   // Возвращение координаты Z
   public double getZ() {
     return zCoord;
-  }
-
-  // Установка значения координаты X
-  public void setX(double val) {
-    xCoord = val;
-  }
-
-  // Установка значения координаты Y
-  public void setY(double val) {
-    yCoord = val;
   }
 
   // Установка значения координаты Z
