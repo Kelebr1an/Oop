@@ -8,27 +8,27 @@ ___Выполнение лабораторных работ___
 |   1       |:white_check_mark:|
 |   2       |:white_check_mark:|
 |   3       |:white_check_mark:|
-|   4       ||
-|   5       ||
-|   6       ||
-|   7       ||
-|   8       ||
+|   4       |:white_check_mark:|
+|   5       |:white_check_mark:|
+|   6       |:white_check_mark:|
+|   7       |:white_check_mark:|
+|   8       |:white_check_mark:|
 
 ___Выполнение блоков___  
 -
 
 |Номер задач|Блок 1|Блок 2|Блок 3|Блок 4|Блок 5|Блок 6|
 |:-----------:|:------:|:------:|:------:|:------:|:------:|:------:|
-|   1       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||
-|   2       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||
-|   3       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||
-|   4       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||
-|   5       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||
-|   6       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||
-|   7       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||
-|   8       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||
-|   9       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||
-|   10      |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||
+|   1       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|   2       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|   3       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|   4       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|   5       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|   6       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|   7       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|   8       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|   9       |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
+|   10      |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|
 
 ___Блок 1___
 -
@@ -577,26 +577,509 @@ __Задача 40__
 
 ___Блок 5___
 -
-__Задача 41__  
-__Задача 42__  
-__Задача 43__  
-__Задача 44__  
-__Задача 45__  
-__Задача 46__  
-__Задача 47__  
-__Задача 48__  
-__Задача 49__  
-__Задача 50__  
 
+__Задача 41__
+```java
+    public static boolean sameLetterPattern(String firstString, String secondString) {
+        // Если длина строк не совпадает, возвращаем false
+        if (firstString.length() != secondString.length()) {
+            return false;
+        }
+
+        boolean firstStringEqual[] = new boolean[firstString.length()]; // Создаём массив для сравнения в первой строке
+        boolean secondStringEqual[] = new boolean[firstString.length()];    // Создаём массив для сравнения во второй строке
+
+        // Проходим по всей строке
+        for (int i = 0; i < firstString.length() - 1; i++) {
+            firstStringEqual[i] = firstString.charAt(i) == firstString.charAt(i + 1); // Записываем в массив результат соответствия
+            secondStringEqual[i] = secondString.charAt(i) == secondString.charAt(i + 1); // Создаём массив для сравнения в первой строке
+
+            // Если соответствия не равны, возвращаем false
+            if (firstStringEqual[i] != secondStringEqual[i]) return false;
+        }
+
+        return true;
+    }
+```
+__Задача 42__ 
+```java
+    public static String spiderVsFly(String spider, String fly) {
+        char spyderLetter = spider.charAt(0); // Получаем букву координаты паука
+        char spyderNumber = spider.charAt(1); // Получаем цифру координаты паука
+        char flyLetter = fly.charAt(0); // Получаем букву координаты мухи
+        char flyNumber = fly.charAt(1); // Получаем цифру координаты мухи
+        char midRing; // Переменная для совпадения колец паука и мухи
+
+        // Если расстояние между буквами меньше или равно двум или больше или равно 6
+        if (Math.abs(spyderLetter - flyLetter) <= 2 || Math.abs(spyderLetter - flyLetter) >= 6) {
+            midRing = (char) Math.min(spyderNumber, flyNumber); // Записываем в переменную меньшую цифру из двух координат
+        } else {
+            midRing = '0'; // Записываем 0
+        }
+
+        String answer = "" + spyderLetter + spyderNumber + "-"; //Записываем начало пути
+
+        // До тех пор, пока кольцо паука дальше чем, место совпадения колец
+        while (spyderNumber > midRing)
+            // Если следующий шаг паука приводит его к центру паутины добавляем к строке точку A0
+            // В противном случае добавляем следующий шаг паука
+            answer += (--spyderNumber == '0' ? "A0-" : "" + spyderLetter + spyderNumber + "-");
+
+        // До тех пор, пока радиала паука меньше или равна радиала мухи и место совпадения колец не равно 0
+        while (spyderNumber <= flyNumber && midRing != '0') {
+            if (spyderLetter == flyLetter) break; // Если координаты паука и мухи совпадают, завершаем цикл
+
+            // Если расстояние между радианами паука и мухи больше или равно 6
+            if (6 <= Math.abs(spyderLetter - flyLetter)) {
+                // Если радиана паука больше чем радиала мухи
+                if (spyderLetter > flyLetter) {
+                    spyderLetter++; // Двигаем паука вперёд
+                    if (spyderLetter == 'I') spyderLetter = 'A'; // Учитываем концы радиан
+                } else {
+                    // Если радиана паука меньше чем радиана мухи
+                    spyderLetter--; // Двигаем паука назад
+                    if (spyderLetter == '@') spyderLetter = 'H'; // Учитываем концы радиан
+                }
+            } else {
+                // Если радиана паука меньше чем радиана мухи
+                if (spyderLetter < flyLetter) spyderLetter++; // Двигаем паука вперёд
+                    // Если радиана паука больше чем радиана мухи
+                else spyderLetter--; // Двигаем паука назад
+            }
+
+            answer += "" + spyderLetter + spyderNumber + "-"; // Добавляем следующий шаг паука
+        }
+
+        // После совпадения радиан, двигаем паука по радиане к совпадению колец и добавляем шаги к ответу
+        while (spyderNumber++ < flyNumber) answer += "" + flyLetter + spyderNumber + "-";
+        return answer.substring(0, answer.length() - 1); // Выводим ответ без последнего знака
+    }
+```
+__Задача 43__
+```java
+    public static int digitsCount(int number) {
+        if (number / 10 == 0) return 1; // Если осталось одна цифра, возвращаем 1
+        return digitsCount(number / 10) + 1; // Вызываем метод, отсекая последнюю цифру и добавляем к результату 1
+    }
+```
+__Задача 44__
+```java
+    public static int totalPoints(String[] stringArray, String word) {
+        int mainCount = 0; // Создаём переменную счётчик
+        List<Character> checkList = new ArrayList<>(); // Создаём список для букв исходного слова
+        // Заполняем список буквами исходного слова
+        for (int i = 0; i < word.length(); i++) {
+            checkList.add(word.charAt(i));
+        }
+
+        // Проходим по каждому слову
+        for (int i = 0; i < stringArray.length; i++) {
+            int count = 0; // Создаём счётчик
+            char[] character = stringArray[i].toCharArray(); // Создаём массив из букв слова
+            List<Character> copy = new ArrayList<Character>(checkList); // Создаём копию массива из букв исходного слова
+
+            // Проходим по каждой букве в массиве из букв слова
+            for (int j = 0; j < character.length; j++) {
+                // Если буква есть в массиве из букв исходного слова
+                if (copy.contains(character[j])) {
+                    count++; // Добавляем к счётчику 1
+                    copy.remove(copy.indexOf(character[j])); // Удаляем найденную букву из массива из букв исходного слова
+                } else {
+                    count = 0; // Если буква не соответствует, обнуляем счётчик
+                    break;  // Завершаем цикл
+                }
+            }
+
+            copy.removeAll(copy); // Очищаем список
+            // Считаем очки за слово
+            if (count == 3)
+                mainCount += 1;
+            else if (count == 4)
+                mainCount += 2;
+            else if (count == 5)
+                mainCount += 3;
+            else if (count == 6 && copy.isEmpty())
+                mainCount += 54;
+            else
+                mainCount += 0;
+        }
+
+        return mainCount; // Возвращаем общее количество очков
+    }
+```
+__Задача 45__
+```java
+    public static int longestRun(int[] numbers) {
+        int maxRun = 0; // Счётчик для максимальной длины
+        int currentRun = 1; // Счётчик для текущей длины
+        // Проходим по массиву чисел
+        for (int i = 1; i < numbers.length; i++) {
+            // Если цифры идут последовательно
+            if (numbers[i - 1] == numbers[i] - 1 || numbers[i - 1] == numbers[i] + 1)
+                currentRun += 1; // Увеличиваем счётчик
+            else
+                currentRun = 1; // Обновляем счётчик
+            // Если текущая длина  больше максимальной
+            if (currentRun > maxRun)
+                maxRun = currentRun; // Устанавливаем максимальную равную текущей
+        }
+        return maxRun; // Возвращаем максимальную
+    }
+```
+__Задача 46__
+```java
+    public static String takeDownAverage(String[] results) {
+        int[] resultsInt = new int[results.length]; // Создаём int массив длины исходного String массива
+        int sum = 0; // Создаём переменную для суммы
+        // Проходим по каждому частному в массиве строк
+        for (int i = 0; i < results.length; i++) {
+            results[i] = results[i].replace('%', '0'); // Заменяем % на 0
+            resultsInt[i] = Integer.parseInt(results[i]) / 10; // Убираем 0 и добавляем в int массив
+            sum += resultsInt[i]; // Добавляем к сумме
+        }
+        int average = sum / resultsInt.length; // Получаем среднее
+        int targetAverage = average - 5; // Получаем среднее снижая балл на 5%
+        int targetSum = targetAverage * (resultsInt.length + 1); // Находим общее учитывая отсутствующие 5%
+        int targetResult = targetSum - sum; // Получаем ответ
+        return String.valueOf(targetResult) + "%"; // Возвращаем ответ с %
+    }
+```
+__Задача 47__
+```java
+    public static String rearrange(String input) {
+        String[] inputSplit = input.split(" "); //  Разделяем строку по пробелу на слова
+        String[] e = new String[inputSplit.length]; // Создаём массив размером равному кол-ву слов
+        // Проходим по каждому слову
+        for (int i = 0; i < inputSplit.length; i++) {
+            StringBuilder stringBuilder = new StringBuilder(); // Создаём строку
+            // Проходим по каждому символу в слове
+            for (int j = 0; j < inputSplit[i].length(); j++) {
+                if (inputSplit[i].charAt(j) > 48 && inputSplit[i].charAt(j) < 57) // Если символ - цифра
+                    e[i] = stringBuilder.append(inputSplit[i].charAt(j) + inputSplit[i] + " ").toString(); // Записываем цифру и слово
+            }
+        }
+        Arrays.sort(e); // Сортируем полученный массив
+        String result = ""; // Создаём строку для результата
+        for (String word : e) {
+            result += word; // Добавляем в строку все слова
+        }
+        result = result.replaceAll("[0-9]", ""); // Удаляем все цифры
+        return result; // Возвращаем строку
+    }
+```
+__Задача 48__
+```java
+    public static int maxPossible(int firstNumber, int secondNumber) {
+        String numbers = ""; // Создаём строку для чисел
+        String resultString = ""; // Создаём результирующую строку
+        String firstNum = String.valueOf(firstNumber); // Преобразуем в строку первое число
+        int stringLength = firstNum.length(); // Получаем количество цифр в первом числе
+        numbers += String.valueOf(secondNumber); // Записываем в строку второе число
+        // Проходим по каждой цифре в первом числе
+        for (int i = 0; i < firstNum.length(); i++) {
+            int maxNum = 0; //  Переменная для проверки максимального
+            // Проходим по каждой цифре во втором числе
+            for (int j = 0; j < numbers.length(); j++) {
+                // Если значение цифры во втором числе больше максимального, запоминаем это цифру
+                if (Character.getNumericValue(numbers.charAt(j)) > maxNum)
+                    maxNum = Character.getNumericValue(numbers.charAt(j));
+            }
+            // Если максимальное значение больше цифры в первом числе, добавляем в результирующую строку это цифру
+            if (maxNum > Character.getNumericValue(firstNum.charAt(i))) {
+                resultString += String.valueOf(maxNum);
+                numbers = numbers.replaceFirst("" + maxNum + "", ""); // Удаляем цифру во втором числе
+            } else {
+                resultString += firstNum.charAt(i); // Записываем исходную цифру
+            }
+        }
+        return Integer.parseInt(resultString); // Возвращаем строку
+    }
+```
+__Задача 49__
+```java
+    public static String timeDifference(String cityA, String inputDate, String cityB) {
+        // Создаём HashMap с ключом в ввиде названия города и значением ввиде смещения по Гринвичу в минутах
+        HashMap<String, Integer> timeZones = new HashMap<>();
+        // Заполняем HashMap
+        timeZones.put("Los Angeles", -480);
+        timeZones.put("New York", -300);
+        timeZones.put("Caracas", -270);
+        timeZones.put("Buenos Aires", -180);
+        timeZones.put("London", 0);
+        timeZones.put("Rome", 60);
+        timeZones.put("Moscow", 180);
+        timeZones.put("Tehran", 210);
+        timeZones.put("New Delhi", 330);
+        timeZones.put("Beijing", 480);
+        timeZones.put("Canberra", 600);
+
+        // Создаём два формата для времени
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("MMMM d, yyyy HH:mm", Locale.ENGLISH); // Исходный
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-M-d HH:mm", Locale.ENGLISH); // Результирующий
+
+        // Создаём объект класса Date
+        Date date = null;
+        try {
+            date = dateFormat1.parse(inputDate); // Пытаемся записать туда исходную дату
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar calendar = Calendar.getInstance(); // Создаём объект класса Calendar
+        calendar.setTime(date); // Устанавливаем в нём полученную дату
+        calendar.add(Calendar.MINUTE, (timeZones.get(cityB) - timeZones.get(cityA))); // Меняем время учитывая город Б
+        String outputDate = dateFormat2.format(calendar.getTime()); // Получаем дату в городе Б
+
+        return outputDate;
+    }
+```
+__Задача 50__
+```java
+    public static boolean isNew(int number) {
+        char numbers[] = String.valueOf(number).toCharArray(); // Заполняем массив цифрами числа
+        Arrays.sort(numbers); // Сортируем массив
+        char character; // Создаём переменную char
+        // Если первый знак - 0
+        if (numbers[0] == '0') {
+            // Идём по цифрам
+            for (int i = 1; i < numbers.length; i++) {
+                // Если следующий символ не равен 0
+                if ((character = numbers[i]) != '0') {
+                    numbers[0] = character; // Ставим символ в начало числа
+                    numbers[i] = '0'; // На место символа ставим 0
+                    break; // Завершаем цикл
+                }
+            }
+        }
+        // Если полученное число равно изначальному числу, значит число новое
+        return Integer.parseInt(new String(numbers)) == number;
+    }
+```
 ___Блок 6___
 -
-__Задача 51__  
-__Задача 52__  
-__Задача 53__  
-__Задача 54__  
-__Задача 55__  
-__Задача 56__  
+
+__Задача 51__
+```java
+    public static String hiddenAnagram(String string, String substring) {
+        string = string.toLowerCase().replaceAll("[^a-z]", ""); // Убираем все символы в строке кроме букв
+        substring = substring.toLowerCase().replaceAll(" ", ""); // Убираем все пробелы
+        // Проходим в течение разницы между длинами строк
+        for (int i = 0; i < string.length() - substring.length() + 1; i++) {
+            // Если i символ в первой строке присутствует во второй строке
+            if (substring.indexOf(string.charAt(i)) > -1) {
+                // Создаём подстроку от найденного символа до длины второй строки + i
+                String subT = string.substring(i, i + substring.length());
+                // Проверяем является ли полученная строка анаграмой
+                if (isAnagram(subT, substring)) {
+                    return subT;
+                }
+            }
+        }
+        return "noutfond";
+    }
+
+    private static Boolean isAnagram(String firstString, String secondString) {
+        StringBuilder s = new StringBuilder(secondString); // Создаём объект класса StringBuilder из второй строки
+        // Проходим по всем символам строки, которая может быть анаграммой
+        for (int i = 0; i < firstString.length(); i++) {
+            int in = s.indexOf(String.valueOf(firstString.charAt(i))); // Находим индекс i символа строки во второй строке
+            // Если символ отсутствует во второй строке, значит это не анаграмма
+            if (in == -1) {
+                return false;
+            }
+            s.setCharAt(in, '-'); // Меняем символ на -
+        }
+        return true;
+    }
+```
+__Задача 52__
+```java
+    public static String[] collect(String string, int n) {
+        // Если длина строки меньше, чем длина среза, возвращаем пустой массив
+        if (string.length() < n) return new String[0];
+        String[] w = collect(string.substring(n), n); // Вызываем метод с урезанной строкой
+        String[] v = new String[w.length + 1]; // Создаём массив размером = кол-во слов
+        v[0] = string.substring(0, n); // Вставляем первое слово в массив
+        for (int i = 0; i < w.length; i++) v[i + 1] = w[i]; // Добавляем остальные слова
+        Arrays.sort(v); // Сортируем полученный массив
+        return v;
+    }
+```
+__Задача 53__
+```java
+    public static String nicoCipher(String string, String key) {
+        int stringLength = string.length(); // Получаем длину строки
+        int keyLength = key.length(); // Получем длину ключа
+        int r = (stringLength - stringLength % keyLength) / keyLength; // Переменная для назначения номеров для букв сообщения
+        if (stringLength % keyLength != 0) r++; // Увеличиваем на 1, в случае необходимости в зависимости от чётности
+        for (int i = stringLength; i < r * keyLength; i++)
+            string += " ";
+        char[][][] v = new char[r][keyLength][2]; // Создаём массив для хранения букв и номеров
+        // Заполняем массив
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < keyLength; j++) {
+                v[i][j][0] = string.charAt(i * keyLength + j);
+                v[i][j][1] = key.charAt(j);
+            }
+            Arrays.sort(v[i], (a, b) -> (int) a[1] - (int) b[1]); // Сортируем полученный массив
+        }
+        String eMessage = "";
+        for (int i = 0; i < r; i++)
+            for (int j = 0; j < keyLength; j++)
+                eMessage += v[i][j][0]; // Формируем строку
+        return eMessage;
+    }
+```
+__Задача 54__
+```java
+    public static int[] twoProduct(int[] array, int product) {
+        // Проходим по массиву
+        for (int i = 1; i < array.length; i++) {
+            // Проходим по массиву до i числа
+            for (int j = 0; j < i; j++) {
+                // Если произведение чисел равно необходимому числу
+                if (array[j] * array[i] == product) {
+                    // Заполняем массив соответствующими числами
+                    int[] result = new int[2];
+                    result[0] = array[j];
+                    result[1] = array[i];
+                    return result; // Возвращаем массив
+                }
+            }
+        }
+        // Если не нашли соответствие, возвращаем пустой массив
+        int[] result = new int[1];
+        return result;
+    }
+```
+__Задача 55__
+```java
+    public static int[] isExact(int n, int... f) {
+        if (f.length < 2) return isExact(n, 1, 1);
+        //  Считаем значение факториала
+        f[1] *= ++f[0];
+        // Если верхняя граница факториала меньше исходного числа, заного вызываем метод
+        if (f[1] < n) {
+            return isExact(n, f[0], f[1]);
+        } else if (f[1] == n) {
+            return new int[]{n, f[0]};  // Если верхняя граница факториала совпадает с исходном числом, возвращаем число и факториал
+        } else {
+            return new int[0]; // Возвращаем пустой массив
+        }
+    }
+```
+__Задача 56__ 
+```java
+    public static String fractions(String decimal) {
+        // Получаем первую часть числа
+        long n1 = Long.parseLong(decimal.replaceAll("(.*)\\(.*", "$1").replace(".", ""));
+        // Получаем вторую часть числа
+        long n2 = Long.parseLong(decimal.replaceAll("[\\(\\)\\.]", ""));
+        int exp1 = decimal.replaceAll("\\d+\\.(\\d*)\\(\\d+\\)", "$1").length();
+        int exp2 = decimal.replaceAll("\\d+\\.(?=.*)", "").replaceAll("[\\(\\)]", "").length();
+        // Считаем разницу между частями числа
+        long num = n2 - n1;
+        long div = (long) Math.pow(10, exp2) - (long) Math.pow(10, exp1);
+        long gcdiv = gcd(num, div);
+        num = num / gcdiv;
+        div = div / gcdiv;
+        return String.format("%d/%d", num, div);
+    }
+    
+    private static long gcd(long a, long b) {
+        return (b == 0) ? a : gcd(b, a % b);
+    }
+```
 __Задача 57__  
+```java
+    public static String pilishString(String string) {
+        int[] pi = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9}; // Число Пи
+        int i = 0; // Счётчик
+        String str = ""; // Строка
+        // Пока счётчик меньше 15 и длина строки больше чем значение i цифры числа Пи
+        while (i < 15 && string.length() >= pi[i]) {
+            str += string.substring(0, pi[i]) + " "; // Добавляем к результирующей строке часть от слова по длине равную i цифре числа Пи
+            string = string.substring(pi[i]); // Обрезаем строку
+            i++; // Двигаем счётчик
+        }
+        return string.isEmpty() || i == 15 ? str.trim() : str + string + String.format("%0" + (pi[i] - string.length()) + "d", 0).replace('0', string.charAt(string.length() - 1));
+    }
+```
 __Задача 58__  
+```java
+    public static String generateNonconsecutive(int n) {
+        String ans = ""; // Строка для ответа
+        // Пока не кончатся возможные комбинации
+        for (int i = 0; i < Math.pow(2, n); i++) {
+            String b = Integer.toBinaryString(i); // Получаем бинарное значение
+            // Пока длина бинарного значения не будет = n, добавляем 0
+            while (b.length() < n) b = "0" + b;
+            // Убираем последовательность и добав
+            if (b.indexOf("11") < 0) ans += " " + b;
+        }
+        return ans.substring(1);
+    }
+```
 __Задача 59__  
+```java
+    public static String isValid(String string) {
+        HashMap<Character, Integer> map = new HashMap(); // Создаём HashMap
+        // Заполняем HashMap
+        for (int i = 0; i < string.length(); i++) {
+            char key = string.charAt(i); // Запоминаем символ
+            // Если в HashMap есть такой символ
+            if (map.get(key) != null)
+                map.put(key, map.get(key) + 1); // Добавляем значению по данному символу 1
+            else
+                map.put(key, 1); // Если нет, то добавляем символ в HashMap
+        }
+        ArrayList<Integer> mapValues = new ArrayList(map.values()); // Создаём список из значение HashMap
+        int max = (int) Collections.max(mapValues); //Находим максимальное
+        int min = (int) Collections.min(mapValues); //Находим минимальное
+        if (max == min) // Если они равны
+            return "YES"; // Возвращаем Yes
+        int minСount = 0, maxСount = 0; // Счётчики
+        // Проходим по значения HashMap
+        for (int i = 0; i < mapValues.size(); i++) {
+            // Считаем значения максимальных
+            if (mapValues.get(i) == max)
+                maxСount++;
+            // Считаем значения минимальных
+            else if (mapValues.get(i) == min)
+                minСount++;
+        }
+        // Если убрав один символ мы сможем сравнять значения max и min, то возвращаем YES
+        return (minСount == 1 || (maxСount == 1 && max == min + 1)) ? "YES" : "NO";
+    }
+```
 __Задача 60__  
+```java
+    public static int[][] sumsUp(int[] array) {
+        int[][] tempResult = new int[array.length][2]; // Создаём массив
+        int resultCounter = 0; // Счётчик
+        // Проходим по всему исходному массиву
+        for (int i = 0; i < array.length; i++) {
+            // Проходим по всему исходному массиву с конца
+            for (int j = i - 1; j >= 0; j--) {
+                // Проверяем даёт ли пары чисел в сумме 8 и при этом не является 8 по отдельности
+                if (array[i] + array[j] == 8 && array[i] != 8 && array[j] != 8) {
+                    // Записываем пару в порядке возрастания
+                    if (array[i] < array[j]) {
+                        tempResult[resultCounter][0] = array[i];
+                        tempResult[resultCounter][1] = array[j];
+                    } else {
+                        tempResult[resultCounter][0] = array[j];
+                        tempResult[resultCounter][1] = array[i];
+                    }
+                    resultCounter++; //Добавляем 1 к счётчику
+                }
+            }
+        }
+        int[][] result = new int[resultCounter][2]; // Создаём массив
+        // Заполняем его полученными парами чисел
+        for (int i = 0; i < resultCounter; i++) {
+            result[i][0] = tempResult[i][0];
+            result[i][1] = tempResult[i][1];
+        }
+        return result;
+    }
+```
