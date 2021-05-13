@@ -12,6 +12,7 @@
 .idea/**/dictionaries
 .idea/**/shelf
 .idea/
+.gradle/
 
 # Sensitive or high-churn files
 .idea/**/dataSources/
